@@ -1,32 +1,17 @@
 <script>
   import logo1 from './assets/svelte.svg'
-  const datas = [
-    {
-      title: '파묘',
-      year: 2024,
-      category: '어드벤처, 액션, SF',
-      likeCount: 0,
-      imgUrl : '/images/파묘.jpg'
-    },
-    {
-      title: '고질라 X 콩: 뉴 엠파이어',
-      year: 2024,
-      category: '어드벤처, 액션, SF',
-      likeCount: 0,
-      imgUrl : '/images/고질라X콩.jpg'
-    },
-    {
-      title: '듄 파트2',
-      year: 2024,
-      category: '액션',
-      likeCount: 0,
-      imgUrl : '/images/듄-파트2.jpg'
-    },
-  ];
+  import datas from './lib/movies'
+
+  let isModal = false; // 모달창 변수 추가
   const handleLike = (i) => {
     datas[i].likeCount += 1;
   }
-
+  const handleOpenModal = () => {
+     isModal = true;
+  }
+  const handleCloseModal = () => {
+    isModal = false;
+  }
 </script>
 
 <main class="container">
@@ -43,12 +28,20 @@
       <p>개봉: {data.year}</p>
       <p>장르: {data.category}</p>
       <button on:click={() => {handleLike(i)}}>좋아요 {data.likeCount}</button>
+      <button class="btn btn-primary" on:click={handleOpenModal}>상세보기</button>
     </div>
   </div>
   {/each}
-
 </main>
 
+{#if isModal}
+<div class="modal">
+  <div class="inner">
+    <h3>영화 상세정보</h3>
+    <button class="btn-close" on:click={handleCloseModal}>닫기</button>
+  </div>
+</div>
+{/if}
 <style>
 .bg-yellow{
   background: gold;
@@ -74,5 +67,24 @@
 
 .item .info{
   width: 100%;
+}
+
+.modal {
+  background: rgba(0, 0 , 0, 0.7);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .inner{
+  background: #fff;
+  width: 80%;
+  padding: 20px;
+  border-radius: 10px;
 }
 </style>
