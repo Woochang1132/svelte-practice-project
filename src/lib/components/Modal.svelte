@@ -1,13 +1,13 @@
 <script>
-    export let datas; // 영화 데이터를 받는다(props 변수 선언)
+    export let movieData; // 영화 데이터를 받는다(props 변수 선언)
     export let selectedMovie; // 선택한 영화의 번호를 받는다.(props 변수 선언)
     export let closeModal; // 함수를 전달받음
 </script>
 
 <div class="modal">
     <div class="inner">
-      <h3>{datas[selectedMovie].title}</h3>
-      <p>{@html datas[selectedMovie].story}</p>
+      <h3>{movieData[selectedMovie].title}</h3>
+      <p>{@html movieData[selectedMovie].story}</p>
       <button class="btn-close" on:click={closeModal}>닫기</button>
     </div>
 </div>

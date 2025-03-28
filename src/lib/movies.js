@@ -28,4 +28,4 @@ const datas = [
     },
   ];
 
-  export default datas;
+  export default datas ;
