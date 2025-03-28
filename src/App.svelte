@@ -1,6 +1,8 @@
 <script>
   import logo1 from './assets/svelte.svg'
   import datas from './lib/movies'
+  import Navbar from './lib/components/Navbar.svelte';
+  import Modal from './lib/components/Modal.svelte';
 
   let isModal = false; // 모달창 변수 추가
   let selectedMovie = 0; // 선택한 영화의 인덱스 변수 추가
@@ -10,13 +12,13 @@
   const handleOpenModal = (i) => {
      isModal = true;
      selectedMovie = i;
-     console.log("Selected movie", datas[i])
   }
-  const handleCloseModal = () => {
+  const closeModal = () => {
     isModal = false;
   }
 </script>
 
+<Navbar/>
 <main class="container">
   <h1>영화정보</h1>
   <img src={logo1} alt="">
@@ -38,13 +40,7 @@
 </main>
 
 {#if isModal}
-<div class="modal">
-  <div class="inner">
-    <h3>{datas[selectedMovie].title}</h3>
-    <p>{@html datas[selectedMovie].story}</p>
-    <button class="btn-close" on:click={handleCloseModal}>닫기</button>
-  </div>
-</div>
+  <Modal {datas} {selectedMovie} {closeModal}/>
 {/if}
 <style>
 .bg-yellow{
@@ -73,22 +69,5 @@
   width: 100%;
 }
 
-.modal {
-  background: rgba(0, 0 , 0, 0.7);
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.modal .inner{
-  background: #fff;
-  width: 80%;
-  padding: 20px;
-  border-radius: 10px;
-}
 </style>
