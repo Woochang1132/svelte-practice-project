@@ -32,9 +32,8 @@
 </script>
 
 <Navbar />
-<!-- <div class={isEvent ? 'event show' : 'event'}> -->
 <AddTansition isEvent={isEvent} AddTansitionFunc={AddTansitionFunc}/>
-<SearchBar />
+<SearchBar movieData={movieData}/>
 
 <Movies movieData={movieData} handleLike={handleLike} openModal={openModal}/>
 

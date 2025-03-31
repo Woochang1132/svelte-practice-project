@@ -1,6 +1,7 @@
-<script>
+<script>    
     let inputText = $state("");
     let alertText = $state('');
+    let {movieData} = $props();
 
     $effect(() => {
         if(inputText.length > 16){
@@ -10,11 +11,30 @@
         }
     })
 
+    const searchMovie = () => {
+        let findMovie = movieData.filter(movie => {
+           return movie.title == inputText
+        })
+       if(findMovie.length === 0) {
+        alertText = '검색 결과가 없습니다.';
+       }else{
+        alertText = ''
+       }
+    }
+
 </script>
 <div class="search-box">
     <div class="input-group">
-        <input type="search" bind:value="{inputText}">
-        <button>검색</button>
+        <input 
+        type="search" 
+        bind:value="{inputText}"
+        on:keydown={(e) => {
+            if(e.key === 'Enter'){
+                searchMovie();
+            }
+        }}
+        >
+        <button on:click={searchMovie}>검색</button>
     </div>
 </div>
 {#if alertText}
