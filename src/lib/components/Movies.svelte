@@ -8,7 +8,7 @@
 
 <main class="container">
     <h1>영화정보</h1>
-    {#each data_temp as data, i}
+    {#each data_temp as data}
     <div class="item">
       <figure>
         <img src={data.imgUrl} alt={data.title}>
@@ -17,8 +17,8 @@
         <h3 class="bg-yellow">{data.title}</h3>
         <p>개봉: {data.year}</p>
         <p>장르: {data.category}</p>
-        <button on:click={() => {handleLike(i)}}>좋아요 {data.likeCount}</button>
-        <button class="btn btn-primary" on:click={() => {openModal(i)}}>상세보기</button>
+        <button on:click={() => {handleLike(data.id)}}>좋아요 {data.likeCount}</button>
+        <button class="btn btn-primary" on:click={() => {openModal(data.id)}}>상세보기</button>
       </div>
     </div>
     {/each}

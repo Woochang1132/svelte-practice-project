@@ -13,8 +13,14 @@
   let selectedMovie = $state(0); // 선택한 영화의 인덱스 변수 추가
   let data_temp = $state([...datas]);
   let alertText = $state('');
-  const handleLike = (i) => {
-    movieData[i].likeCount += 1;
+  const handleLike = (id) => {
+    // movieData[i].likeCount += 1;
+    datas.map(movie => {
+      if(movie.id === id){
+        movie.likeCount += 1;
+      }
+    });
+    data_temp = [...datas];
   }
   const closeModal = () => {
     isModal = false;
@@ -32,7 +38,7 @@
   }
   //  영화 전체 목록을 보기 위한 방법
   const movieListAll = () => {
-    data_temp = [...datas];
+    data_temp = [...movieData];
     alertText = ''
   }
 
