@@ -4,7 +4,6 @@
     export let openModal;
     export let data_temp;
 
-  console.log("movies에서의 data_temp >> " , data_temp)
 </script>
 
 <main class="container">

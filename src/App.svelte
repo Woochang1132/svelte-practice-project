@@ -12,6 +12,7 @@
   let isModal = $state(false);// 모달창 변수 추가
   let selectedMovie = $state(0); // 선택한 영화의 인덱스 변수 추가
   let data_temp = $state([...datas]);
+  let alertText = $state('');
   const handleLike = (i) => {
     movieData[i].likeCount += 1;
   }
@@ -29,12 +30,18 @@
   const AddTansitionFunc = () => {
     isEvent = false
   }
+  //  영화 전체 목록을 보기 위한 방법
+  const movieListAll = () => {
+    data_temp = [...datas];
+    alertText = ''
+  }
 
 </script>
 
 <Navbar />
 <AddTansition isEvent={isEvent} AddTansitionFunc={AddTansitionFunc}/>
-<SearchBar movieData={movieData} bind:data_temp={data_temp}/>
+<SearchBar movieData={movieData} bind:data_temp={data_temp} bind:alertText={alertText}/>
+<button on:click={() => { movieListAll() }}>전체보기</button>
 <Movies data_temp={data_temp} movieData={movieData} handleLike={handleLike} openModal={openModal}/>
 
 {#if isModal}

@@ -1,7 +1,6 @@
 <script>    
     let inputText = $state("");
-    let alertText = $state('');
-    let {data_temp = $bindable(), movieData} = $props();
+    let {data_temp = $bindable(), movieData, alertText = $bindable()} = $props();
 
     $effect(() => {
         if(inputText.length > 16){
@@ -20,7 +19,6 @@
        }else{
         alertText = ''
        }
-       console.log("searchBar 에서의 data_temp >>", data_temp)
     }
 
 </script>
