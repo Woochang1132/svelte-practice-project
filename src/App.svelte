@@ -11,6 +11,7 @@
   let movieData = $state(datas);
   let isModal = $state(false);// 모달창 변수 추가
   let selectedMovie = $state(0); // 선택한 영화의 인덱스 변수 추가
+  let data_temp = $state([...datas]);
   const handleLike = (i) => {
     movieData[i].likeCount += 1;
   }
@@ -33,9 +34,8 @@
 
 <Navbar />
 <AddTansition isEvent={isEvent} AddTansitionFunc={AddTansitionFunc}/>
-<SearchBar movieData={movieData}/>
-
-<Movies movieData={movieData} handleLike={handleLike} openModal={openModal}/>
+<SearchBar movieData={movieData} bind:data_temp={data_temp}/>
+<Movies data_temp={data_temp} movieData={movieData} handleLike={handleLike} openModal={openModal}/>
 
 {#if isModal}
   <Modal movieData={movieData} {selectedMovie} {closeModal}/>

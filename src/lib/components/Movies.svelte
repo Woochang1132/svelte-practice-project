@@ -2,11 +2,14 @@
     export let movieData;
     export let handleLike;
     export let openModal;
+    export let data_temp;
+
+  console.log("movies에서의 data_temp >> " , data_temp)
 </script>
 
 <main class="container">
     <h1>영화정보</h1>
-    {#each movieData as data, i}
+    {#each data_temp as data, i}
     <div class="item">
       <figure>
         <img src={data.imgUrl} alt={data.title}>

@@ -1,7 +1,7 @@
 <script>    
     let inputText = $state("");
     let alertText = $state('');
-    let {movieData} = $props();
+    let {data_temp = $bindable(), movieData} = $props();
 
     $effect(() => {
         if(inputText.length > 16){
@@ -12,14 +12,15 @@
     })
 
     const searchMovie = () => {
-        let findMovie = movieData.filter(movie => {
-           return movie.title == inputText
+        data_temp = movieData.filter(movie => {
+           return movie.title.includes(inputText);
         })
-       if(findMovie.length === 0) {
+       if(data_temp.length === 0) {
         alertText = '검색 결과가 없습니다.';
        }else{
         alertText = ''
        }
+       console.log("searchBar 에서의 data_temp >>", data_temp)
     }
 
 </script>
