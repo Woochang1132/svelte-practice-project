@@ -4,6 +4,7 @@
   import Modal from './lib/components/Modal.svelte';
   import Movies from './lib/components/Movies.svelte';
   import AddTansition from './lib/components/AddTansition.svelte';
+  import SearchBar from './lib/components/SearchBar.svelte';
 
 
 
@@ -33,6 +34,8 @@
 <Navbar />
 <!-- <div class={isEvent ? 'event show' : 'event'}> -->
 <AddTansition isEvent={isEvent} AddTansitionFunc={AddTansitionFunc}/>
+<SearchBar />
+
 <Movies movieData={movieData} handleLike={handleLike} openModal={openModal}/>
 
 {#if isModal}
