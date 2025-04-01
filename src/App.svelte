@@ -15,12 +15,16 @@
   let alertText = $state('');
   const handleLike = (id) => {
     // movieData[i].likeCount += 1;
-    datas.map(movie => {
+    movieData.map(movie => {
       if(movie.id === id){
         movie.likeCount += 1;
       }
     });
-    data_temp = [...datas];
+    // data_temp = [...datas];
+    // 목적 : data_temp 있는 내용만 필터링 필요
+    data_temp = movieData.filter(movie => {
+      return data_temp.includes(movie);
+    })
   }
   const closeModal = () => {
     isModal = false;
